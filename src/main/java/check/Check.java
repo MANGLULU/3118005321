@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Check {
 
-    public void getAnswer(String path1, String path2 , String answerPath) throws IOException {
+    public static void getAnswer(String path1, String path2 , String answerPath) throws IOException {
         Text text = new Text();
         String s1 = text.FileToString(path1);
         String s2 = text.FileToString(path2);

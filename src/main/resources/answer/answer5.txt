@@ -1,0 +1,3 @@
+FirstPath:testfiles/orig.txt
+secondPath:testfiles/orig_0.8_dis_10.txt
+answer:0.98

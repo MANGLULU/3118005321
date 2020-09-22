@@ -1,0 +1,3 @@
+FirstPath:D:\project\3118005321\src\main\resources\testfiles\orig.txt
+secondPath:D:\project\3118005321\src\main\resources\testfiles\orig_0.8_add.txt
+answer:0.96
