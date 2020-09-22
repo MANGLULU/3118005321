@@ -3,13 +3,19 @@ package calculate;
 import java.util.*;
 
 public class Calculate {
+
     private HashMap<String, Integer> map  = null;
-    public void getDict(List<String> list1, List<String> list2) {
-//        HashMap<String, Integer> map = new HashMap<>();
+
+    /**
+     * 获得查重字典
+     * @param originalText 原文
+     * @param contrastText 对比文
+     */
+    public void getDict(List<String> originalText, List<String> contrastText) {
         map = new HashMap<String, Integer>();
         List<String> list = new ArrayList<String>();
-        list.addAll(list1);
-        list.addAll(list2);
+        list.addAll(originalText);
+        list.addAll(contrastText);
         for(int i = 0,j = 0; i < list.size(); i++) {
             if(map.containsKey(list.get(i))) {
                 continue;
@@ -17,27 +23,32 @@ public class Calculate {
             map.put(list.get(i),j);
             j++;
         }
-//        int word_frequency[] = new int[map.size()];
-//        for(int i = 0; i < list1.size(); i++) {
-//            if(map.containsKey(list1.get(i))) {
-//                word_frequency[map.get(list1.get(i))] += 1;
-//            }
-//        }
     }
 
-    public int[] getWordFrequency(List<String> list) {
+    /**
+     * 计算词频
+     * @param text 需要查词频的文章list集合
+     * @return 返回词频数组
+     */
+    public int[] getWordFrequency(List<String> text) {
         int word_frequency[] = new int[map.size()];
-        for(int i = 0; i < list.size(); i++) {
-            if(map.containsKey(list.get(i))) {
-                word_frequency[map.get(list.get(i))] += 1;
+        for(int i = 0; i < text.size(); i++) {
+            if(map.containsKey(text.get(i))) {
+                word_frequency[map.get(text.get(i))] += 1;
             }
         }
         return word_frequency;
     }
 
-    public Double getCosine(List<String> list1,List<String> list2) {
-        int[] wordFrequency1 = getWordFrequency(list1);
-        int[] wordFrequency2 = getWordFrequency(list2);
+    /**
+     * 计算查重率
+     * @param originalText 原文
+     * @param contrastText 需要查重的文章
+     * @return 返回查重率
+     */
+    public Double getCosine(List<String> originalText,List<String> contrastText) {
+        int[] wordFrequency1 = getWordFrequency(originalText);
+        int[] wordFrequency2 = getWordFrequency(contrastText);
         int sum = 0;
         int square_numbers1 = 0;
         int square_numbers2 = 0;
